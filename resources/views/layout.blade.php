@@ -90,10 +90,10 @@
                 <div class="sidebar">
                     <a class="active" href="#home">Home</a>
                     <a href="{{ url('/students') }}">Student</a>
-                    <a href="#Teacher">Teacher</a>
-                    <a href="#Courses">Courses</a>
-                    <a href="#Enrollment">Enrollment</a>
-                    <a href="#Payment">Payment</a>
+                    <a href="{{ url('/teachers') }}">Teacher</a>
+                    <a href="{{ url('/courses') }}">Courses</a>
+                    <a href="{{ url('/enrollment') }}">Enrollment</a>
+                    <a href="{{ url('/payment') }}">Payment</a>
                 </div>
             </div>
             <div class="col-md-9">

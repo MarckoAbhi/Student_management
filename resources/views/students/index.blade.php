@@ -16,10 +16,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Address</th>
                         <th>Mobile</th>
                         <th>Email</th>
-                        <th>DOB</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -29,14 +27,12 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->address }}</td>
                         <td>{{ $item->phone }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>{{ $item->dob }}</td>
                         <td>{{($item->status==1)?'Active':'Inactive'}}</td>
                         <td>
                         <td>
-                            <a href="{{ url('/student/' . $item->id . '/edit') }}">
+                            <a href="{{ url('/students/' . $item->id . '/edit') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path
@@ -46,7 +42,7 @@
                                 </svg>
                             </a>
 
-                            <form action="{{ url('/student' . '/' . $item->id) }}" method="POST" class="d-inline">
+                            <form action="{{ url('/students' . '/' . $item->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-link" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
