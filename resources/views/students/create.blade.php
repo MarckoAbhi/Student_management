@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header"><b>Students Page</b></div>
+    <div class="card-header"><b>Create Page</b></div>
     <div class="card-body">
 
         <form action="{{ url('students') }}" method="post">
