@@ -2,10 +2,10 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h2>Student Data</h2>
+        <h2>Teacher Data</h2>
     </div>
     <div class="card-body">
-        <a href="{{ url('/students/create') }}" class="btn btn-primary btn-sm" title="Add New Student">
+        <a href="{{ url('/teachers/create') }}" class="btn btn-primary btn-sm" title="Add New Teacher">
             <i class="fa fa-plus" aria-hidden="true"></i> Add New
         </a>
         <br />
@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($students as $item)
+                    @foreach($teachers as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
@@ -33,7 +33,7 @@
 
                         <td>
 
-                            <a href="{{ url('/students/' . $item->id . '/edit') }}">
+                            <a href="{{ url('/teachers/' . $item->id . '/edit') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path
@@ -43,7 +43,7 @@
                                 </svg>
                             </a>
 
-                            <form action="{{ url('/students' . '/' . $item->id) }}" method="POST" class="d-inline">
+                            <form action="{{ url('/teachers' . '/' . $item->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-link" type="submit"><svg xmlns="http://www.w3.org/2000/svg"

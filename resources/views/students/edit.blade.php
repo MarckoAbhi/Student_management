@@ -19,7 +19,7 @@
             <input type="email" name="email" id="email" value="{{$students->email}}" class="form-control"></br>
             <label>DOB</label></br>
             <input type="date" name="dob" id="dob" value="{{$students->dob}}" class="form-control"></br>
-            <input type="submit" value="Update" class="btn btn-success"></br>
+            <input type="submit" value="Update" class="btn btn-primary"></br>
         </form>
 
     </div>

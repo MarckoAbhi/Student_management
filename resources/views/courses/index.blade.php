@@ -2,10 +2,10 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h2>Student Data</h2>
+        <h2>Course Data</h2>
     </div>
     <div class="card-body">
-        <a href="{{ url('/students/create') }}" class="btn btn-primary btn-sm" title="Add New Student">
+        <a href="{{ url('/courses/create') }}" class="btn btn-primary btn-sm" title="Add New Course">
             <i class="fa fa-plus" aria-hidden="true"></i> Add New
         </a>
         <br />
@@ -16,24 +16,24 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Mobile</th>
-                        <th>Email</th>
+                        <th>Syllabus</th>
+                        <th>Duration</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($students as $item)
+                    @foreach($courses as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->phone }}</td>
-                        <td>{{ $item->email }}</td>
+                        <td>{{ $item->syllabus }}</td>
+                        <td>{{ $item->duration }}</td>
                         <td>{{($item->status==1)?'Active':'Inactive'}}</td>
 
                         <td>
 
-                            <a href="{{ url('/students/' . $item->id . '/edit') }}">
+                            <a href="{{ url('/courses/' . $item->id . '/edit') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path
@@ -43,7 +43,7 @@
                                 </svg>
                             </a>
 
-                            <form action="{{ url('/students' . '/' . $item->id) }}" method="POST" class="d-inline">
+                            <form action="{{ url('/courses' . '/' . $item->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-link" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
