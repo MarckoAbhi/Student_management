@@ -15,7 +15,7 @@ class StudentController extends Controller
      */
     public function index(): View
     {
-        $students= Student::all();
+        $students= Student::where('status','!=',9)->get();
         return view('students.index')->with('students', $students);
     }
 
@@ -35,6 +35,37 @@ class StudentController extends Controller
         $input = $request->all();
         Student::create($input);
         return redirect('students')->with('flash_message', 'Student Added!');
+
+    //     $name = !empty($request ->name)?$request->name:Null;
+    //     $display_flag = !empty($request ->display_flag)?$request ->display_flag:2;  
+    //     $foreign_flag = !empty($request ->foreign_flag)?$request ->foreign_flag:2;  
+    //     $status = !empty($request ->status)?$request ->status:2;  
+    //     $created_by =Auth::user()->id;
+    //     $created_at = date('y-m-d H:i:s');
+    //     $updated_by = Null;
+    //     $updated_at = Null;
+    //    $myarr = [
+    //     "name"=> $name,
+    //     "display_flag"=> $display_flag,
+    //     "foreign_flag"=> $foreign_flag,
+    //     "status"=>$status,
+    //     "created_by" => $created_by,
+    //     "created_at" => $created_at,
+    //     "updated_by" => $updated_by,
+    //     "updated_at" => $updated_at,
+    //    ] ;
+    //    DB::beginTransaction();
+    //     $query=UgcCsirNet::create($myarr);
+    //     if ($query) {
+    //         DB::commit();
+    //         $message = 'Entry Saved Successfuly';
+    //         Session::flash('message', $message);
+    //     } else {
+    //         DB::rollback();
+    //         $message = 'Something Went Wrong';
+    //         Session::flash('error', $message);
+    //     }
+    //     return redirect($this->current_menu);
     }
 
     /**
@@ -71,7 +102,9 @@ class StudentController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        Student::destroy($id);
-        return redirect('students')->with('flash_message', 'Student deleted!'); 
+        $student = Student::findOrFail($id);
+        $student->status = 9; 
+        $student->save();
+        return redirect('students')->with('flash_message', 'Student marked as deleted!');
     }
 }

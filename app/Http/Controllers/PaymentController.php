@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Payment;
 use App\Models\Enrollment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
-class EnrollmentController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $enrollments = Enrollment::where('status','!=',9)->get();
-        return view('enrollments.index')->with('enrollments', $enrollments);
+        $payments = Payment::all();
+        return view('payments.index')->with('payments', $payments);
     }
 
     /**
@@ -23,7 +24,8 @@ class EnrollmentController extends Controller
      */
     public function create()
     {
-        return view('enrollments.create');
+        $enrollments = Enrollment::pluck('enroll_no', 'id');
+        return view('payments.create', compact('enrollments'));
     }
 
     /**
@@ -33,8 +35,8 @@ class EnrollmentController extends Controller
     {
         $input = $request->all();
         //dd($request->all());
-        Enrollment::create($input);
-        return redirect('enrollments')->with('flash_message', 'Enrollment Added!');
+        Payment::create($input);
+        return redirect('payments')->with('flash_message', 'Payment Done!');
     }
 
     /**
@@ -42,8 +44,8 @@ class EnrollmentController extends Controller
      */
     public function show(string $id)
     {
-        $enrollments = Enrollment::find($id);
-        return view('enrollments.show')->with('enrollments', $enrollments);
+        $payments = Payment::find($id);
+        return view('payments.show')->with('payments', $payments);
     }
 
     /**
@@ -51,8 +53,9 @@ class EnrollmentController extends Controller
      */
     public function edit(string $id)
     {
-        $enrollments = Enrollment::find($id);
-        return view('enrollments.edit')->with('enrollments', $enrollments);
+        $payments= Payment::find($id);
+        $enrollments = Enrollment::pluck('enroll_no', 'id');
+        return view('payments.edit')->with('payments', 'enrollments');
     }
 
     /**
@@ -60,10 +63,10 @@ class EnrollmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $enrollments = Enrollment::find($id);
+        $payments = Payment::find($id);
         $input = $request->all();
-        $enrollments->update($input); // Fix the typo here
-        return redirect('enrollments')->with('flash_message', 'Enrollment Updated!');
+        $payments->update($input);
+        return redirect('payments')->with('flash_message', 'payments Updated!');
     }
 
     /**
@@ -71,7 +74,7 @@ class EnrollmentController extends Controller
      */
     public function destroy(string $id)
     {
-        Enrollment::destroy($id);
-        return redirect('enrollments')->with('flash_message', 'Enrollment Deleted!');
+        Payment::destroy($id);
+        return redirect('payments')->with('flash_message', 'Payment Deleted!');
     }
 }

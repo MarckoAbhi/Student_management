@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->course_id }}</td>
+                        <td>{{ $item->course->name }}</td>
                         <td>{{ $item->start_date }}</td>
                         <td>{{($item->status==1)?'Active':'Inactive'}}</td>
 
@@ -55,6 +55,11 @@
                                     </svg>
                                 </button>
                             </form>
+                            <script>
+                            function confirmDelete() {
+                                return confirm("Are you sure to delete this Batch?");
+                            }
+                            </script>
                         </td>
                     </tr>
                     @endforeach

@@ -15,7 +15,7 @@ class TeacherController extends Controller
      */
     public function index(): View
     {
-        $teachers= Teacher::all();
+        $teachers= Teacher::where('status','!=',9)->get();
         return view('teachers.index')->with('teachers', $teachers);
     }
 
@@ -71,7 +71,10 @@ class TeacherController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        Teacher::destroy($id);
-        return redirect('teachers')->with('flash_message', 'teacher deleted!'); 
+        
+        $teacher = Teacher::findOrFail($id);
+        $teacher->status = 9; 
+        $teacher->save();
+        return redirect('students')->with('flash_message', 'teacher marked as deleted!');
     }
 }

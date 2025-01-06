@@ -15,7 +15,8 @@
             <input type="text" name="course_id" id="course_id" value="{{$batches->course_id}}"
                 class="form-control"></br>
             <label>Start Date</label></br>
-            <input type="date" name="start_date" id="start" value="{{$batches->start}}" class="form-control"></br>
+            <input type="date" name="start_date" id="start_date" value="{{$batches->start_date}}"
+                class="form-control"></br>
             <div class="col-md-3">
                 <div class="form-group">
                     <span for="status">Status<span style="color:red;">*</span>:</span>

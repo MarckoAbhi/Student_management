@@ -10,9 +10,14 @@ class Course extends Model
     protected $fillable = [
         'name',
         'syllabus',
-        'duration'
+        'duration',
+        'status'
         
     ];
     
     use HasFactory;
+    
+    public function duration(){
+        return $this->duration. ' Months';
+    }
 }

@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS (from a single version for consistency) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
+    /* Sidebar Styles */
     .sidebar {
         margin: 0;
         padding: 0;
@@ -35,13 +41,37 @@
         color: white;
     }
 
+    /* Fixed title header style */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
 
-    div.content {
-        margin-left: 200px;
-        padding: 1px 16px;
-        height: 1000px;
     }
 
+    .navbar h2 {
+        margin: 0;
+        padding: 10px 20px;
+
+
+    }
+
+    .container-fluid {
+        padding-top: 70px;
+        /* Added padding to prevent overlap with the fixed navbar */
+    }
+
+    /* Content area style */
+    div.content {
+        margin-left: 200px;
+        padding: 20px;
+        min-height: 100vh;
+        /* Ensure it stretches to fill the remaining height */
+    }
+
+    /* Responsive design */
     @media screen and (max-width: 700px) {
         .sidebar {
             width: 100%;
@@ -68,25 +98,20 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
+        <!-- Main Row with Fixed Header -->
         <div class="row">
             <div class="col-md-12">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#">
-                        <h2>Student Management</h2>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarSupport">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                <!-- Navbar (Fixed at the top) -->
+                <nav class=" navbar navbar-expand-lg navbar-light bg-light">
 
+                    <h2>Student Management</h2>
                 </nav>
-
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <!-- The sidebar -->
+                <!-- Sidebar -->
                 <div class="sidebar">
                     <a class="active" href="/">Home</a>
                     <a href="{{ url('/students') }}">Student</a>
@@ -97,14 +122,13 @@
                     <a href="{{ url('/payments') }}">Payment</a>
                 </div>
             </div>
-            <div class="col-md-9">
+
+            <!-- Content Area -->
+            <div class="col-md-9 content">
                 @yield('content')
             </div>
         </div>
     </div>
-
-
-
 </body>
 
 </html>

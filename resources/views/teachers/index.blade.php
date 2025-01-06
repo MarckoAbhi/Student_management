@@ -55,6 +55,11 @@
                                     </svg>
                                 </button>
                             </form>
+                            <script>
+                            function confirmDelete() {
+                                return confirm("Are you sure to delete this Teacher?");
+                            }
+                            </script>
                         </td>
                     </tr>
                     @endforeach

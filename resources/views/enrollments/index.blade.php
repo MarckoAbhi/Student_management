@@ -29,8 +29,8 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->enroll_no }}</td>
-                        <td>{{ $item->batch_id }}</td>
-                        <td>{{ $item->student_id }}</td>
+                        <td>{{ $item->batch->name }}</td>
+                        <td>{{ $item->student->name }}</td>
                         <td>{{ $item->join_date }}</td>
                         <td>{{ $item->fee }}</td>
                         <td>{{($item->status==1)?'Active':'Inactive'}}</td>
@@ -59,6 +59,11 @@
                                     </svg>
                                 </button>
                             </form>
+                            <script>
+                            function confirmDelete() {
+                                return confirm("Are you sure you want to delete this Enrollment?");
+                            }
+                            </script>
                         </td>
                     </tr>
                     @endforeach

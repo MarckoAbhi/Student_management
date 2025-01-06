@@ -17,7 +17,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Syllabus</th>
-                        <th>Duration</th>
+                        <th>Months</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -28,7 +28,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->syllabus }}</td>
-                        <td>{{ $item->duration }}</td>
+                        <td>{{ $item->duration() }}</td>
                         <td>{{($item->status==1)?'Active':'Inactive'}}</td>
 
                         <td>
@@ -55,6 +55,11 @@
                                     </svg>
                                 </button>
                             </form>
+                            <script>
+                            function confirmDelete() {
+                                return confirm("Are you sure to delete this Course?");
+                            }
+                            </script>
                         </td>
                     </tr>
                     @endforeach

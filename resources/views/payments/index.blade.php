@@ -2,11 +2,11 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h2>Student Data</h2>
+        <h2>Payments Details</h2>
     </div>
     <div class="card-body">
-        <a href="{{ url('/students/create') }}" class="btn btn-primary btn-sm" title="Add New Student">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+        <a href="{{ url('/payments/create') }}" class="btn btn-primary btn-sm" title="Add New Batch">
+            <i class="fa fa-plus" aria-hidden="true"></i>Make Payments
         </a>
         <br />
         <br />
@@ -15,25 +15,21 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        <th>Status</th>
+                        <th>Enrollment No</th>
+                        <th>Paid Date</th>
+                        <th>Amount</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($students as $item)
+                    @foreach($payments as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->phone }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td>{{($item->status==1)?'Active':'Inactive'}}</td>
-
+                        <td>{{ $item->enrollment->enroll_no }}</td>
+                        <td>{{ $item->paid_date }}</td>
+                        <td>{{ $item->amount }}</td>
                         <td>
-
-                            <a href="{{ url('/students/' . $item->id . '/edit') }}">
+                            <a href="{{ url('/payments/' . $item->id . '/edit') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path
@@ -43,13 +39,11 @@
                                 </svg>
                             </a>
 
-                            <form action="{{ url('/students' . '/' . $item->id) }}" method="POST" class="d-inline"
-                                onsubmit="return confirmDelete()">
+                            <form action="{{ url('/payments' . '/' . $item->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-link" type="submit">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
-                                        class="bi bi-trash" viewBox="0 0 16 16">
+                                <button class="btn btn-link" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
                                         <path
                                             d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
                                         <path
@@ -57,12 +51,17 @@
                                     </svg>
                                 </button>
                             </form>
-
                             <script>
                             function confirmDelete() {
                                 return confirm("Are you sure to delete this student?");
                             }
                             </script>
+
+                            <a href="{{url('/report/report1/' .$item->id)}}" title="Edit Button">
+
+                                <button class="btn btn-primary"><i class="fa fa-print"
+                                        aria-hidden="true"></i>Print</button>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

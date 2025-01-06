@@ -13,7 +13,8 @@ class Teacher extends Model
         'address',
         'phone',
         'email',
-        'dob'
+        'dob',
+        'status'
     ];
     
     use HasFactory;
