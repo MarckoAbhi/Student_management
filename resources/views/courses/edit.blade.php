@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div><br>
-
+            <a class="btn btn-dark" href="{{ route('courses.index') }}"> Back</a>
             <input type="submit" value="Update" class="btn btn-primary"></br>
         </form>
 

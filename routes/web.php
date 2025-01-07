@@ -10,7 +10,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
-    return view('home');
+    return view('dashboard');
 });
 
 

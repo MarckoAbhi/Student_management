@@ -20,7 +20,6 @@
                         <th>Student</th>
                         <th>Join Date</th>
                         <th>Fee</th>
-                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -33,8 +32,6 @@
                         <td>{{ $item->student->name }}</td>
                         <td>{{ $item->join_date }}</td>
                         <td>{{ $item->fee }}</td>
-                        <td>{{($item->status==1)?'Active':'Inactive'}}</td>
-
                         <td>
 
                             <a href="{{ url('/enrollments/' . $item->id . '/edit') }}">

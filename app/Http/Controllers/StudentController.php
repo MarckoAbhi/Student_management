@@ -105,6 +105,6 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->status = 9; 
         $student->save();
-        return redirect('students')->with('flash_message', 'Student marked as deleted!');
+        return redirect('students')->with('flash_message', 'Student  deleted!');
     }
 }

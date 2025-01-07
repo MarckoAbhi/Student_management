@@ -8,7 +8,9 @@
             <p class="card-text">Paid Date : {{ $item->paid_date }}</p>
             <p class="card-text">Amount : {{ $item->amount }}</p>
         </div>
-        <button>
+        <div class="pull-right mt-4">
+            <a class="btn btn-dark" href="{{ route('payments.index') }}"> Back</a>
+        </div>
     </div>
 </div>
 @endsection

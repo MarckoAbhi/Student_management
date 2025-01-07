@@ -2,7 +2,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h2>Teacher Data</h2>
+        <h2>Teachers Data</h2>
     </div>
     <div class="card-body">
         <a href="{{ url('/teachers/create') }}" class="btn btn-primary btn-sm" title="Add New Teacher">

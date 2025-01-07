@@ -25,9 +25,23 @@
 
             <label>Fee</label></br>
             <input type="text" name="fee" id="fee" value="{{$enrollments->fee}}" class="form-control"></br>
-
-
-            <input type="submit" value="Update" class="btn btn-primary"></br>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <span for="status">Status<span style="color:red;">*</span>:</span>
+                    <div>
+                        <select class="form-select single-select-clear-field" name="status"
+                            data-placeholder="Choose Status" required>
+                            <option value=""></option>
+                            <option value="1">Active</option>
+                            <option value="2">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="pull-right mt-4">
+                <a class="btn btn-dark" href="{{ route('enrollments.index') }}"> Back</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
         </form>
 
     </div>

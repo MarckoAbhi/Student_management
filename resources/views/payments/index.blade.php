@@ -1,12 +1,13 @@
 @extends('layout')
+
 @section('content')
 <div class="card">
     <div class="card-header">
         <h2>Payments Details</h2>
     </div>
     <div class="card-body">
-        <a href="{{ url('/payments/create') }}" class="btn btn-primary btn-sm" title="Add New Batch">
-            <i class="fa fa-plus" aria-hidden="true"></i>Make Payments
+        <a href="{{ url('/payments/create') }}" class="btn btn-primary btn-sm" title="Make Payment">
+            <i class="fa fa-plus" aria-hidden="true"></i> Make Payments
         </a>
         <br />
         <br />
@@ -27,9 +28,9 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->enrollment->enroll_no }}</td>
                         <td>{{ $item->paid_date }}</td>
-                        <td>{{ $item->amount }}</td>
+                        <td>{{ number_format($item->amount, 2) }}</td>
                         <td>
-                            <a href="{{ url('/payments/' . $item->id . '/edit') }}">
+                            <a href="{{ url('/payments/' . $item->id . '/edit') }}" title="Edit Payment">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path
@@ -39,11 +40,13 @@
                                 </svg>
                             </a>
 
-                            <form action="{{ url('/payments' . '/' . $item->id) }}" method="POST" class="d-inline">
+                            <form action="{{ url('/payments' . '/' . $item->id) }}" method="POST" class="d-inline"
+                                onsubmit="return confirmDelete();">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-link" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                                <button class="btn btn-link" type="submit" title="Delete Payment">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                                        class="bi bi-trash" viewBox="0 0 16 16">
                                         <path
                                             d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
                                         <path
@@ -51,16 +54,10 @@
                                     </svg>
                                 </button>
                             </form>
-                            <script>
-                            function confirmDelete() {
-                                return confirm("Are you sure to delete this student?");
-                            }
-                            </script>
 
-                            <a href="{{url('/report/report1/' .$item->id)}}" title="Edit Button">
-
-                                <button class="btn btn-primary"><i class="fa fa-print"
-                                        aria-hidden="true"></i>Print</button>
+                            <a href="{{url('/report/report1/' .$item->id)}}" title="Print Payment">
+                                <button class="btn btn-primary btn-sm"><i class="fa fa-print" aria-hidden="true"></i>
+                                    Print</button>
                             </a>
                         </td>
                     </tr>
@@ -70,4 +67,10 @@
         </div>
     </div>
 </div>
+
+<script>
+function confirmDelete() {
+    return confirm("Are you sure you want to delete this payment?");
+}
+</script>
 @endsection

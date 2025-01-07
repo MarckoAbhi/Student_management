@@ -10,7 +10,9 @@
             <p class="card-text">Join Date : {{ $courses->join_date }}</p>
             <p class="card-text">Fee : {{ $courses->fee }}</p>
         </div>
-        <button>
+        <div class="pull-right mt-4">
+            <a class="btn btn-dark" href="{{ route('enrollments.index') }}"> Back</a>
+        </div><button>
     </div>
 </div>
 @endsection

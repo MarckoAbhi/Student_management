@@ -8,7 +8,9 @@
             <p class="card-text">Course Id : {{ $batches->course->name }}</p>
             <p class="card-text">Start Date : {{ $batches->start_date }}</p>
         </div>
-        <button>
+        <div class="pull-right mt-4">
+            <a class="btn btn-dark" href="{{ route('batches.index') }}"> Back</a>
+        </div>
     </div>
 </div>
 @endsection

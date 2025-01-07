@@ -9,6 +9,8 @@
             <p class="card-text">Duration : {{ $courses->duration() }}</p>
         </div>
         <button>
+            <a class="btn btn-dark" href="{{ route('courses.index') }}"> Back</a>
+        </button>
     </div>
 </div>
 @endsection

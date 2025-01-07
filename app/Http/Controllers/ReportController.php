@@ -13,31 +13,31 @@ class ReportController extends Controller
     {
         $payment = Payment::findOrFail($pid);
 
-        $print = "<div style='margin:20px; padding:20px'>";
+        $print = "<div style='margin:20px; padding:20px; font-family: Arial, sans-serif;'>";
         $print .= "<h1 style='text-align:center'>Payment Report</h1>";
         $print .= "<hr/>";
-        $print .= "<p>Receipt No: <b>" . $pid . "</b></p>";
-        $print .= "<p>Payment Date: <b>" . $payment->paid_date . "</b></p>";
-        $print .= "<p>Enrollment No: <b>" . $payment->enrollment->enroll_no . "</b></p>";
-        $print .= "<p>Student Name: <b>" . $payment->enrollment->student->name . "</b></p>";
+        $print .= "<p><strong>Receipt No:</strong> " . $pid . "</p>";
+        $print .= "<p><strong>Payment Date:</strong> " . $payment->paid_date . "</p>";
+        $print .= "<p><strong>Enrollment No:</strong> " . $payment->enrollment->enroll_no . "</p>";
+        $print .= "<p><strong>Student Name:</strong> " . $payment->enrollment->student->name . "</p>";
 
         $print .= "<hr/>";
-        $print .= "<table style='width:100%'>";
-        $print .= "<tr>";
-        $print .= "<td>Description</td>";
-        $print .= "<td>Amount</td>";
+        $print .= "<table style='width:100%; border: 1px solid #ddd; border-collapse: collapse;'>";
+        $print .= "<tr style='background-color: #f4f4f4;'>";
+        $print .= "<th style='padding: 8px; text-align: left;'>Description</th>";
+        $print .= "<th style='padding: 8px; text-align: right;'>Amount</th>";
         $print .= "</tr>";
 
         $print .= "<tr>";
-        $print .= "<td><h3>" . $payment->enrollment->batch->name . "</h3></td>";
-        $print .= "<td><h3>" . $payment->amount . "</h3></td>";
+        $print .= "<td style='padding: 8px;'>" . $payment->enrollment->batch->name . "</td>";
+        $print .= "<td style='padding: 8px; text-align: right;'>" . number_format($payment->amount, 2) . "</td>";
         $print .= "</tr>";
         
         $print .= "</table>";
         $print .= "<hr/>";
 
-        $print .= "<span>Printed by: <b>" . Auth::user()->name . "</b></span>";
-        $print .= "<span> Printed Date: <b>" . date('Y-m-d') . "</b></span>";
+        // $print .= "<p><strong>Printed by:</strong> " . Auth::user()->name . "</p>";
+        $print .= "<p><strong>Printed Date:</strong> " . date('Y-m-d') . "</p>";
         
         $print .= "</div>";
 

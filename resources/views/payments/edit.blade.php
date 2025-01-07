@@ -25,7 +25,10 @@
             <label>Amount</label></br>
             <input type="text" name="amount" id="amount" value="{{$payments->amount}}" class="form-control"></br>
 
-            <input type="submit" value="Update" class="btn btn-primary"></br>
+            <div class="pull-right mt-4">
+                <a class="btn btn-dark" href="{{ route('payments.index') }}"> Back</a>
+                <button style="float:right" type="submit" class="btn btn-primary">Update</button>
+            </div>
         </form>
 
     </div>

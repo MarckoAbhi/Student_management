@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div><br>
-
+            <a class="btn btn-dark" href="{{ route('batches.index') }}"> Back</a>
             <input type="submit" value="Update" class="btn btn-primary"></br>
         </form>
 

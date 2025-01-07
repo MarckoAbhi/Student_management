@@ -33,8 +33,8 @@
             </div>
 
             <div class="pull-right mt-4">
-
-                <button style="float:right" type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-dark" href="{{ route('students.index') }}"> Back</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
 

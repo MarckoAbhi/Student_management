@@ -15,7 +15,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::all();
+        $payments = Payment::where('status','!=',9)->get();
         return view('payments.index')->with('payments', $payments);
     }
 
@@ -74,7 +74,9 @@ class PaymentController extends Controller
      */
     public function destroy(string $id)
     {
-        Payment::destroy($id);
-        return redirect('payments')->with('flash_message', 'Payment Deleted!');
+        $payment = Payment::findOrFail($id);
+        $payment->status = 9; 
+        $payment->save();
+        return redirect('payments')->with('flash_message', 'Payment  deleted!');
     }
 }

@@ -1,15 +1,20 @@
 @extends('layout')
+
 @section('content')
 <div class="card">
     <div class="card-header">
         <h2>Batches</h2>
     </div>
     <div class="card-body">
-        <a href="{{ url('/batches/create') }}" class="btn btn-primary btn-sm" title="Add New Batch">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-        </a>
+        <!-- Add New Button aligned to the right -->
+        <div class="text-right">
+            <a href="{{ url('/batches/create') }}" class="btn btn-primary btn-sm" title="Add New Batch">
+                <i class="fa fa-plus" aria-hidden="true"></i> Add New
+            </a>
+        </div>
+
         <br />
-        <br />
+
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -29,10 +34,9 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->course->name }}</td>
                         <td>{{ $item->start_date }}</td>
-                        <td>{{($item->status==1)?'Active':'Inactive'}}</td>
-
+                        <td>{{($item->status == 1) ? 'Active' : 'Inactive'}}</td>
                         <td>
-
+                            <!-- Edit Button -->
                             <a href="{{ url('/batches/' . $item->id . '/edit') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -43,11 +47,14 @@
                                 </svg>
                             </a>
 
-                            <form action="{{ url('/batches' . '/' . $item->id) }}" method="POST" class="d-inline">
+                            <!-- Delete Button -->
+                            <form action="{{ url('/batches' . '/' . $item->id) }}" method="POST" class="d-inline"
+                                onsubmit="return confirmDelete()">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-link" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="16" height="16" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                                <button class="btn btn-link" type="submit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                                        class="bi bi-trash" viewBox="0 0 16 16">
                                         <path
                                             d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
                                         <path
@@ -55,9 +62,10 @@
                                     </svg>
                                 </button>
                             </form>
+
                             <script>
                             function confirmDelete() {
-                                return confirm("Are you sure to delete this Batch?");
+                                return confirm("Are you sure you want to delete this Batch?");
                             }
                             </script>
                         </td>

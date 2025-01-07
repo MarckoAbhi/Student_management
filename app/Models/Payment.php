@@ -8,7 +8,7 @@ class Payment extends Model
 {
     protected $table = 'payments';
     protected $primaryKey = 'id';
-    protected $fillable = ['enrollment_id','paid_date','amount'];
+    protected $fillable = ['enrollment_id','paid_date','amount', 'status'];
     
     use HasFactory;
 

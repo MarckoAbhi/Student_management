@@ -10,7 +10,10 @@
             <p class="card-text">Mobile : {{ $teachers->email }}</p>
             <p class="card-text">Mobile : {{ $teachers->dob }}</p>
         </div>
-        <button>
+
+        <div class="pull-right mt-4">
+            <a class="btn btn-dark" href="{{ route('teachers.index') }}"> Back</a>
+        </div>
     </div>
 </div>
 @endsection

@@ -19,7 +19,23 @@
             <input type="email" name="email" id="email" value="{{$teachers->email}}" class="form-control"></br>
             <label>DOB</label></br>
             <input type="date" name="dob" id="dob" value="{{$teachers->dob}}" class="form-control"></br>
-            <input type="submit" value="Update" class="btn btn-primary"></br>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <span for="status">Status<span style="color:red;">*</span>:</span>
+                    <div>
+                        <select class="form-select single-select-clear-field" name="status"
+                            data-placeholder="Choose Status" required>
+                            <option value=""></option>
+                            <option value="1">Active</option>
+                            <option value="2">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="pull-right mt-4">
+                <a class="btn btn-dark" href="{{ route('teachers.index') }}"> Back</a>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
         </form>
 
     </div>
