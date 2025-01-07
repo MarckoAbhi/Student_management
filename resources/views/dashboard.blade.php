@@ -51,9 +51,7 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="text-center mt-5">
-        <p>&copy; 2025 Future Education. All rights reserved.</p>
-    </footer>
+
 </div>
 
 @endsection

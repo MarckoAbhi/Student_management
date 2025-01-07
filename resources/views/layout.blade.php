@@ -126,6 +126,9 @@
             <!-- Content Area -->
             <div class="col-md-9 content">
                 @yield('content')
+                <footer class="text-center mt-5">
+                    <p>&copy; 2025 Future Education. All rights reserved.</p>
+                </footer>
             </div>
         </div>
     </div>
