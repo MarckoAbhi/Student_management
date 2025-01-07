@@ -9,9 +9,15 @@
             {!! csrf_field() !!}
             <div class="form-group"> <label>Enroll No</label></br>
                 <input type="text" name="enroll_no" id="enroll_no" class="form-control">
-            </div>
+            </div><br>
             <label>Batch ID</label></br>
-            <input type="text" name="batch_id" id="batch_id" class="form-control"></br>
+            <select name='batch_id' id='batch_id' class='form-control'>
+
+                @foreach($batches as $id=>$name)
+                <option value="{{$id}}">{{$name}}</option>
+                @endforeach
+            </select><br>
+
             <label>Student ID</label></br>
             <input type="text" name="student_id" id="student_id" class="form-control"></br>
             <label>Join Date</label></br>
@@ -33,7 +39,7 @@
             </div>
             <div class="pull-right mt-4">
                 <a class="btn btn-dark" href="{{ route('enrollments.index') }}"> Back</a>
-                <button style="float:right" type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
 

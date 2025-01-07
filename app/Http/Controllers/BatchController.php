@@ -16,7 +16,7 @@ class BatchController extends Controller
      */
     public function index(): View
     {
-        $batches= Batch::all();
+        $batches= Batch::where('status','!=',9)->get();
         return view('batches.index')->with('batches', $batches);
     }
 
@@ -76,7 +76,9 @@ class BatchController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        Batch::destroy($id);
-        return redirect('batches')->with('flash_message', 'Batch deleted!');
+        $batch = Batch::findOrFail($id);
+        $batch->status = 9; 
+        $batch->save();
+        return redirect('batches')->with('flash_message', 'Batche  deleted!');
     }
 }

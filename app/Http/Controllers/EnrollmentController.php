@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Enrollment;
 use Illuminate\Http\RedirectResponse;
+use App\Models\Enrollment;
+use App\Models\Batch;
+use App\Models\Student;
 use Illuminate\View\View;
 
 class EnrollmentController extends Controller
@@ -23,7 +25,9 @@ class EnrollmentController extends Controller
      */
     public function create()
     {
-        return view('enrollments.create');
+        $batches= Batch::pluck('name', 'id');
+        $students = Student::pluck('name', 'id');
+        return view('enrollments.create', compact('batches', 'students'));
     }
 
     /**
@@ -71,7 +75,9 @@ class EnrollmentController extends Controller
      */
     public function destroy(string $id)
     {
-        Enrollment::destroy($id);
-        return redirect('enrollments')->with('flash_message', 'Enrollment Deleted!');
+        $enrollment = Enrollment::findOrFail($id);
+        $enrollment->status = 9; 
+        $enrollment->save();
+        return redirect('enrollments')->with('flash_message', 'Enrollment  deleted!');
     }
 }
